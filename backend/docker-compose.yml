@@ -1,0 +1,43 @@
+services:
+  postgres: 
+    image: postgres:17.6-alpine
+    container_name: tutoruber-postgres
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB_NAME}
+    ports:
+      - "${POSTGRES_PORT_OUTSIDE}:${POSTGRES_PORT}"
+    volumes:
+      - tutoruber-pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+    networks:
+      - tutoruber-network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    container_name: tutoruber-backend
+    ports:
+      - "${BACKEND_PORT_OUTSIDE}:${BACKEND_PORT}"
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT}/${POSTGRES_DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+    restart: unless-stopped
+    networks:
+      - tutoruber-network
+
+volumes:
+  tutoruber-pgdata:
+
+networks:
+  tutoruber-network:
+    driver: bridge
