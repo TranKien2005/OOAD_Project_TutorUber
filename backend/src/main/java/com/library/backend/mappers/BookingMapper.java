@@ -15,6 +15,8 @@ public interface BookingMapper {
 
     @Mapping(target = "studentId", source = "student.id")
     @Mapping(target = "studentName", source = "student.fullName")
+    @Mapping(target = "tutorId", source = "classEntity.tutor.id")
+    @Mapping(target = "tutorName", source = "classEntity.tutor.fullName")
     @Mapping(target = "classId", source = "classEntity.id")
     @Mapping(target = "classSubject", source = "classEntity.subject")
     BookingResponse toBookingResponse(Booking booking);

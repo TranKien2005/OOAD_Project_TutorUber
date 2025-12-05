@@ -17,6 +17,7 @@ import java.util.List;
 )
 public interface TutorMapper {
 
+    @Mapping(target = "id", source = "tutor.tutor.id")
     @Mapping(target = "user", source = "tutor.tutor")
     @Mapping(target = "certificates", source = "tutor.tutor.certificates")
     TutorProfileResponse toTutorProfileResponse(TutorProfile tutor);

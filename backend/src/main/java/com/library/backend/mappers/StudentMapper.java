@@ -13,6 +13,7 @@ import org.mapstruct.*;
 )
 public interface StudentMapper {
 
+    @Mapping(target = "id", source = "profile.student.id")
     @Mapping(target = "user", source = "student")
     StudentProfileResponse toStudentProfileResponse(StudentProfile profile);
 

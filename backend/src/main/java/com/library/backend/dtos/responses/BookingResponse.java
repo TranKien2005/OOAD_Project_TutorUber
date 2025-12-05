@@ -18,6 +18,10 @@ public class BookingResponse {
 
     String studentName;
 
+    Long tutorId;
+
+    String tutorName;
+
     Long classId;
 
     String classSubject;
