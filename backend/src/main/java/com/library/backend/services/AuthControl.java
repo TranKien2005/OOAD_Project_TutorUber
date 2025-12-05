@@ -1,5 +1,6 @@
 package com.library.backend.services;
 
+import com.library.backend.dtos.requests.ChangePasswordRequest;
 import com.library.backend.dtos.requests.LoginRequest;
 import com.library.backend.dtos.requests.RegisterRequest;
 import com.library.backend.dtos.responses.AuthResponse;
@@ -123,5 +124,27 @@ public class AuthControl {
                 .token("simple-token-" + user.getId()) // Simple token
                 .user(authMapper.toUserResponse(user))
                 .build();
+    }
+
+    @Transactional
+    public void changePassword(Long userId, ChangePasswordRequest request) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new GeneralException(ResponseCode.USER_NOT_FOUND));
+
+        // Verify current password
+        if (!request.getCurrentPassword().equals(user.getPassword())) {
+            throw new GeneralException(ResponseCode.INVALID_CREDENTIALS);
+        }
+
+        // Validate new password matches confirm password
+        if (!request.getNewPassword().equals(request.getConfirmPassword())) {
+            throw new GeneralException(ResponseCode.PASSWORD_MISMATCH);
+        }
+
+        // Update password
+        user.setPassword(request.getNewPassword());
+        userRepository.save(user);
+
+        log.info("Password changed successfully for user: {}", user.getUsername());
     }
 }

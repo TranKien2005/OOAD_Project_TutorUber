@@ -86,6 +86,45 @@ Login with username and password.
 }
 ```
 
+### Change Password
+**PUT** `/auth/change-password/{userId}`
+
+Change user password.
+
+**Path Parameters:**
+- `userId` - User ID
+
+**Request Body:**
+```json
+{
+  "currentPassword": "password123",
+  "newPassword": "newpassword456",
+  "confirmPassword": "newpassword456"
+}
+```
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Password changed successfully"
+}
+```
+
+**Validation:**
+- Current password must be correct
+- New password must be at least 6 characters
+- Confirm password must match new password
+
+---
+      "phone": "0987654321",
+      "role": "STUDENT",
+      "active": true
+    }
+  }
+}
+```
+
 ---
 
 ## Student Profile

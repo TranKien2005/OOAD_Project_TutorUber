@@ -104,6 +104,18 @@ Content-Type: application/json
 }
 ```
 
+#### Đổi mật khẩu
+```http
+PUT /api/auth/change-password/{userId}
+Content-Type: application/json
+
+{
+  "currentPassword": "password123",
+  "newPassword": "newpassword456",
+  "confirmPassword": "newpassword456"
+}
+```
+
 ### Student APIs
 
 #### Xem hồ sơ học viên

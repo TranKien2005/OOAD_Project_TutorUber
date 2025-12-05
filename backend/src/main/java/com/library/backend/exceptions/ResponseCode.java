@@ -17,6 +17,7 @@ public enum ResponseCode {
     INVALID_CREDENTIALS("Invalid username or password."),
     INVALID_ROLE("Invalid user role."),
     ACCOUNT_DISABLED("Account is disabled."),
+    PASSWORD_MISMATCH("New password and confirm password do not match."),
     
     // Student related
     STUDENT_NOT_FOUND("Student does not exist in the system."),

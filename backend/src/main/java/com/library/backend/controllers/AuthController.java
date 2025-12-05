@@ -1,5 +1,6 @@
 package com.library.backend.controllers;
 
+import com.library.backend.dtos.requests.ChangePasswordRequest;
 import com.library.backend.dtos.requests.LoginRequest;
 import com.library.backend.dtos.requests.RegisterRequest;
 import com.library.backend.dtos.responses.ApiResponse;
@@ -38,6 +39,17 @@ public class AuthController {
                 .success(true)
                 .data(response)
                 .message("Login successful")
+                .build());
+    }
+
+    @PutMapping("/change-password/{userId}")
+    public ResponseEntity<ApiResponse<Void>> changePassword(
+            @PathVariable Long userId,
+            @Valid @RequestBody ChangePasswordRequest request) {
+        authControl.changePassword(userId, request);
+        return ResponseEntity.ok(ApiResponse.<Void>builder()
+                .success(true)
+                .message("Password changed successfully")
                 .build());
     }
 }
