@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tìm kiếm Gia sư</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header-row">
+        <div class="title">
+          <span class="icon">🔎</span>
+          <h2>Tìm kiếm Gia sư</h2>
+        </div>
+        <div class="actions">
+          <button class="btn btn-edit" id="resetBtn">Reset lọc</button>
+          <button class="btn btn-save" id="searchBtn">Tìm kiếm</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <div>
+          <label>Môn học (subject)</label>
+          <select class="input" id="subject">
+            <option value="">-- Chọn môn --</option>
+            <option value="Mathematics">Toán (Mathematics)</option>
+            <option value="Physics">Vật lý (Physics)</option>
+            <option value="Chemistry">Hóa học (Chemistry)</option>
+            <option value="English">Tiếng Anh (English)</option>
+            <option value="Biology">Sinh học (Biology)</option>
+            <option value="Literature">Ngữ văn (Literature)</option>
+          </select>
+        </div>
+        <div>
+          <label>Đơn giá tối thiểu (minRate)</label>
+          <input class="input" id="minRate" type="number" min="0" step="1000" placeholder="0">
+        </div>
+        <div>
+          <label>Đơn giá tối đa (maxRate)</label>
+          <input class="input" id="maxRate" type="number" min="0" step="1000" placeholder="0">
+        </div>
+        <div>
+          <label>Điểm đánh giá tối thiểu (minRating)</label>
+          <input class="input" id="minRating" type="number" min="0" max="5" step="0.1" placeholder="0">
+        </div>
+        <div class="col-span-2">
+          <label style="display:flex;align-items:center;gap:8px;">
+            <input type="checkbox" id="verified">
+            Chỉ gia sư đã xác minh
+          </label>
+        </div>
+      </div>
+
+      <div id="resultInfo" class="muted" style="margin-top:8px;"></div>
+      <div id="cardsGrid" class="cards-grid" style="margin-top:16px;"></div>
+    </div>
+  </div>
+
+  <script src="../js/studentSearchTutor.js"></script>
+</body>
+</html>

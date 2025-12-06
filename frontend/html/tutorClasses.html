@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lớp học của Gia sư</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header-row">
+        <div class="title">
+          <span class="icon">🏫</span>
+          <h2>Lớp học của Gia sư</h2>
+        </div>
+        <div class="actions">
+          <button class="btn btn-edit" id="backBtn">Quay lại</button>
+        </div>
+      </div>
+
+      <div id="metaInfo" class="muted"></div>
+      <div id="classesGrid" class="classes-grid" style="margin-top:16px;"></div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="confirmModal">
+    <div class="modal">
+      <h3>Xác nhận đặt lớp</h3>
+      <p id="confirmText">Bạn có chắc muốn đặt lớp này?</p>
+      <div class="modal-actions">
+        <button class="btn btn-cancel" id="cancelBooking">Hủy</button>
+        <button class="btn btn-confirm" id="confirmBooking">Đặt lớp</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/tutorClasses.js"></script>
+</body>
+</html>
