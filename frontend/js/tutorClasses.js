@@ -70,40 +70,51 @@ function closeBookingModal() {
 }
 
 async function placeBooking() {
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const role = (localStorage.getItem("role") || "").toUpperCase();
+  const studentId = user?.id;
+
+  if (!studentId || role !== "STUDENT") {
+    alert("Vui lòng đăng nhập bằng tài khoản Học viên để đặt lớp.");
+    window.location.href = "./login.html";
+    return;
+  }
+  if (!bookingClassId) {
+    alert("Thiếu mã lớp học.");
+    return;
+  }
+
   try {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const role = (localStorage.getItem("role") || "").toUpperCase();
-    const studentId = user?.id;
-
-    if (!studentId || role !== "STUDENT") {
-      alert("Vui lòng đăng nhập bằng tài khoản Học viên để đặt lớp.");
-      window.location.href = "./login.html";
-      return;
-    }
-    if (!bookingClassId) {
-      alert("Thiếu mã lớp học.");
-      return;
-    }
-
-    const body = { studentId, classId: bookingClassId };
-    const res = await fetch(`${API_BASE}/bookings`, {
+    const res = await fetch(`${API_BASE}/bookings/student/${studentId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
+      body: JSON.stringify({ classId: bookingClassId }) // CreateBookingRequest
     });
-    const json = await res.json().catch(() => ({}));
-    if (!res.ok || !json?.success) {
+
+    // Luôn parse JSON (nếu có)
+    let json = {};
+    try { json = await res.json(); } catch {}
+
+    if (!res.ok) {
+      const msg = json?.message || `Đặt lớp thất bại! (${res.status})`;
+      alert(msg);
+      console.error("Booking failed:", res.status, json);
+      return;
+    }
+    if (!json?.success) {
       alert(json?.message || "Đặt lớp thất bại!");
       return;
     }
+
     alert("Đặt lớp thành công!");
     closeBookingModal();
+    const tutorId = getTutorIdFromQuery();
+    if (tutorId) loadTutorClasses();
   } catch (e) {
     console.error("Booking error:", e);
     alert("Lỗi kết nối khi đặt lớp!");
   }
 }
-
 async function loadTutorClasses() {
   const tutorId = getTutorIdFromQuery();
   if (!tutorId) {

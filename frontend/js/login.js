@@ -2,7 +2,7 @@ const API_BASE = "http://localhost:8080/api";
 
 function pageByRole(role) {
   const r = (role || "").toUpperCase();
-  const map = { ADMIN: "adminHome.html", TUTOR: "tutorHome.html", STUDENT: "studentHome.html" };
+  const map = { ADMIN: "adminHome.html", TUTOR: "tutorProfile.html", STUDENT: "studentSearchTutor.html" };
   return map[r] || map.STUDENT;
 }
 
