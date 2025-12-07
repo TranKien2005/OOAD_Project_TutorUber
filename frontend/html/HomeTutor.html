@@ -9,23 +9,176 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <style>
-      body { font-family: "Poppins", sans-serif; background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%); min-height: 100vh; padding: 40px 20px; color: #2d3748; }
-      .main-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 24px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); border: none; max-width: 1200px; margin: 0 auto; overflow: hidden; }
-      .card-header-custom { padding: 30px 40px; background: white; border-bottom: 1px solid #edf2f7; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; }
-      .header-title { background: linear-gradient(to right, #ff512f, #dd2476); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 700; font-size: 1.8rem; margin: 0; }
-      .btn-create { background: linear-gradient(45deg, #ff512f 0%, #dd2476 100%); border: none; color: white; padding: 12px 30px; border-radius: 50px; font-weight: 600; box-shadow: 0 5px 15px rgba(221, 36, 118, 0.3); transition: 0.3s; }
-      .btn-create:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(221, 36, 118, 0.5); color: white; }
-      .btn-requests { background: white; color: #ff512f; border: 2px solid #ff512f; padding: 10px 25px; border-radius: 50px; font-weight: 600; transition: 0.3s; position: relative; }
-      .btn-requests:hover { background: #fff5f5; transform: translateY(-2px); }
-      .notification-badge { position: absolute; top: -8px; right: -8px; background: #dc3545; color: white; border-radius: 50%; width: 24px; height: 24px; font-size: 0.75rem; display: none; align-items: center; justify-content: center; border: 2px solid white; font-weight: bold; }
+      /* --- GLOBAL STYLES --- */
+      body { 
+          font-family: "Poppins", sans-serif; 
+          background: linear-gradient(135deg, #ff9966 0%, #ff5e62 100%); 
+          min-height: 100vh; 
+          padding: 40px 20px; 
+          color: #2d3748; 
+      }
+      .main-card { 
+          background: rgba(255, 255, 255, 0.95); 
+          backdrop-filter: blur(10px); 
+          border-radius: 24px; 
+          box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); 
+          border: none; 
+          max-width: 1200px; 
+          margin: 0 auto; 
+          overflow: hidden; 
+      }
       
-      /* Hiệu ứng hover cho hàng trong bảng */
-      .table-custom tbody tr { cursor: pointer; transition: all 0.2s; }
-      .table-custom tbody tr:hover { background-color: #fff5f5; transform: scale(1.005); box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+      /* --- HEADER --- */
+      .card-header-custom { 
+          padding: 30px 40px; 
+          background: white; 
+          border-bottom: 1px solid #edf2f7; 
+          display: flex; 
+          justify-content: space-between; 
+          align-items: center; 
+          flex-wrap: wrap; 
+          gap: 15px; 
+      }
+      .header-title { 
+          background: linear-gradient(to right, #ff512f, #dd2476); 
+          -webkit-background-clip: text; 
+          -webkit-text-fill-color: transparent; 
+          font-weight: 700; 
+          font-size: 1.8rem; 
+          margin: 0; 
+      }
+
+      /* --- BUTTONS --- */
+      .btn-create { 
+          background: linear-gradient(45deg, #ff512f 0%, #dd2476 100%); 
+          border: none; 
+          color: white; 
+          padding: 12px 30px; 
+          border-radius: 50px; 
+          font-weight: 600; 
+          box-shadow: 0 5px 15px rgba(221, 36, 118, 0.3); 
+          transition: 0.3s; 
+      }
+      .btn-create:hover { 
+          transform: translateY(-3px); 
+          box-shadow: 0 8px 25px rgba(221, 36, 118, 0.5); 
+          color: white; 
+      }
+      .btn-requests { 
+          background: white; 
+          color: #ff512f; 
+          border: 2px solid #ff512f; 
+          padding: 10px 25px; 
+          border-radius: 50px; 
+          font-weight: 600; 
+          transition: 0.3s; 
+          position: relative; 
+      }
+      .btn-requests:hover { 
+          background: #fff5f5; 
+          transform: translateY(-2px); 
+      }
+      /* Style cho nút đăng xuất */
+      .btn-logout {
+          background: #f7fafc;
+          color: #718096;
+          border: 1px solid #e2e8f0;
+          padding: 10px 20px;
+          border-radius: 50px;
+          font-weight: 600;
+          transition: 0.3s;
+      }
+      .btn-logout:hover {
+          background: #e2e8f0;
+          color: #2d3748;
+      }
+
+      .notification-badge { 
+          position: absolute; 
+          top: -8px; 
+          right: -8px; 
+          background: #dc3545; 
+          color: white; 
+          border-radius: 50%; 
+          width: 24px; 
+          height: 24px; 
+          font-size: 0.75rem; 
+          display: none; 
+          align-items: center; 
+          justify-content: center; 
+          border: 2px solid white; 
+          font-weight: bold; 
+      }
+
+      /* --- TABLE STYLES --- */
+      .table-responsive { padding: 0 20px 20px 20px; }
+      .table-custom { border-collapse: separate; border-spacing: 0 10px; }
+      .table-custom thead th { 
+          border: none; 
+          font-weight: 600; 
+          color: #64748b; 
+          text-transform: uppercase;
+          font-size: 0.75rem;
+          letter-spacing: 0.5px; 
+          padding: 15px 10px;
+          background: transparent !important;
+      }
+      .table-custom tbody tr { 
+          background: white; 
+          box-shadow: 0 5px 10px rgba(0,0,0,0.02); 
+          border-radius: 12px; 
+          transition: transform 0.2s, box-shadow 0.2s; 
+          cursor: pointer;
+      }
+      .table-custom tbody tr td { border: none; padding: 15px 10px; vertical-align: middle; }
+      .table-custom tbody tr td:first-child { border-top-left-radius: 12px; border-bottom-left-radius: 12px; padding-left: 20px; }
+      .table-custom tbody tr td:last-child { border-top-right-radius: 12px; border-bottom-right-radius: 12px; padding-right: 20px; }
       
-      .schedule-badge { background: #fff0f0; color: #c53030; border: 1px solid #fed7d7; padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; margin-right: 5px; display: inline-block; font-weight: 500; }
-      .price-text { color: #dd2476; font-weight: 700; }
-      .schedule-row { background: white; border: 1px dashed #cbd5e0; border-radius: 12px; padding: 10px; margin-bottom: 10px; display: flex; gap: 10px; align-items: center; }
+      .table-custom tbody tr:hover { 
+          transform: translateY(-3px); 
+          box-shadow: 0 8px 20px rgba(0,0,0,0.08); 
+          background-color: #fffafa !important; 
+      }
+
+      /* --- TABLE COMPONENTS --- */
+      .subject-icon { 
+          width: 45px; 
+          height: 45px; 
+          background: #fff0f0; 
+          color: #ff512f; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          border-radius: 12px; 
+          font-size: 1.2rem; 
+          margin-right: 15px; 
+          flex-shrink: 0;
+      }
+      .schedule-badge { 
+          background: #edf2f7; 
+          color: #4a5568; 
+          padding: 4px 10px; 
+          border-radius: 6px; 
+          font-size: 0.75rem; 
+          display: inline-block; 
+          font-weight: 500; 
+          margin-bottom: 4px;
+      }
+      .price-text { color: #dd2476; font-weight: 700; font-size: 1rem; }
+      .progress-thin { height: 6px; border-radius: 10px; background-color: #edf2f7; margin-top: 8px; }
+      .text-location { font-size: 0.8rem; color: #718096; display: flex; align-items: center; gap: 5px; }
+
+      /* --- MODAL --- */
+      .schedule-row { 
+          background: white; 
+          border: 1px dashed #cbd5e0; 
+          border-radius: 12px; 
+          padding: 10px; 
+          margin-bottom: 10px; 
+          display: flex; 
+          gap: 10px; 
+          align-items: center; 
+      }
       .btn-remove-row { width: 35px; height: 35px; border-radius: 50%; background: #fee2e2; color: #e53e3e; border: none; }
     </style>
   </head>
@@ -34,7 +187,7 @@
       <div class="card-header-custom">
         <div>
           <h2 class="header-title"><i class="fa-solid fa-chalkboard-user me-2"></i>Quản lý Lớp học</h2>
-          <p class="text-muted mb-0 small mt-1">Xin chào, <strong>Gia sư (ID: <span id="displayId">...</span>)</strong></p>
+          <p class="text-muted mb-0 small mt-1">Xin chào, <strong><span id="displayTutorName">Gia sư</span> (ID: <span id="displayId">...</span>)</strong></p>
         </div>
         <div class="d-flex gap-3">
           <button class="btn-requests" onclick="openPendingRequestsModal()">
@@ -44,22 +197,26 @@
           <button class="btn-create" onclick="openCreateModal()">
             <i class="fa-solid fa-plus me-2"></i>Tạo Lớp Mới
           </button>
+          <button class="btn-logout" onclick="logout()" title="Đăng xuất">
+             <i class="fa-solid fa-right-from-bracket"></i>
+          </button>
         </div>
       </div>
 
       <div class="table-responsive">
-        <table class="table table-custom mb-0 align-middle">
+        <table class="table table-custom mb-0">
           <thead>
             <tr>
-              <th class="p-4 bg-light text-uppercase text-secondary small">ID</th>
-              <th class="p-4 bg-light text-uppercase text-secondary small">Lớp học</th>
-              <th class="p-4 bg-light text-uppercase text-secondary small">Lịch học</th>
-              <th class="p-4 bg-light text-uppercase text-secondary small">Học phí</th>
-              <th class="p-4 bg-light text-uppercase text-secondary small text-center">Sĩ số</th>
+              <th width="5%">ID</th>
+              <th width="30%">Thông tin lớp học</th>
+              <th width="25%">Lịch & Địa điểm</th>
+              <th width="15%">Học phí/tháng</th>
+              <th width="20%">Trạng thái sĩ số</th>
+              <th width="5%" class="text-center"><i class="fa-solid fa-chevron-right"></i></th>
             </tr>
           </thead>
           <tbody id="classTableBody">
-            <tr><td colspan="5" class="text-center py-5 text-muted">Đang tải dữ liệu... <i class="fa-solid fa-spinner fa-spin"></i></td></tr>
+            <tr><td colspan="6" class="text-center py-5 text-muted">Đang tải dữ liệu... <i class="fa-solid fa-spinner fa-spin"></i></td></tr>
           </tbody>
         </table>
       </div>
@@ -93,7 +250,7 @@
 
     <div class="modal fade" id="createClassModal" tabindex="-1" data-bs-backdrop="static">
       <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
+        <div class="modal-content border-0">
           <div class="modal-header">
             <h5 class="modal-title fw-bold">Mở Lớp Học Mới</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -103,7 +260,7 @@
                 <div class="row g-3 mb-4">
                     <div class="col-md-12">
                         <label class="form-label">Tên môn học *</label>
-                        <input type="text" id="inpSubject" class="form-control" placeholder="Ví dụ: Toán lớp 12" required />
+                        <input type="text" id="inpSubject" class="form-control" placeholder="Ví dụ: Toán lớp 12 - Luyện thi ĐH" required />
                     </div>
                     <div class="col-md-6">
                         <label class="form-label">Học phí (VNĐ) *</label>
@@ -115,11 +272,11 @@
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Địa điểm</label>
-                        <input type="text" id="inpLocation" class="form-control" placeholder="Online hoặc Địa chỉ..." />
+                        <input type="text" id="inpLocation" class="form-control" placeholder="Online qua Zoom hoặc Địa chỉ nhà..." />
                     </div>
                     <div class="col-md-12">
                         <label class="form-label">Mô tả chi tiết</label>
-                        <textarea id="inpDesc" class="form-control" rows="2"></textarea>
+                        <textarea id="inpDesc" class="form-control" rows="2" placeholder="Nội dung khóa học, yêu cầu..."></textarea>
                     </div>
                 </div>
                 <div class="mb-2">
@@ -140,12 +297,54 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
       const API_BASE_URL = "http://localhost:8080/api"; 
-      const CURRENT_TUTOR_ID = 5; 
-      document.getElementById('displayId').innerText = CURRENT_TUTOR_ID;
+      
+      // --- BIẾN TOÀN CỤC CHO AUTH ---
+      let CURRENT_TUTOR_ID = null;
+      let AUTH_TOKEN = null;
+
+      // Hàm kiểm tra đăng nhập (Chạy đầu tiên)
+      function checkAuth() {
+          const token = localStorage.getItem("token");
+          const userStr = localStorage.getItem("user");
+          const role = localStorage.getItem("role");
+
+          // Nếu thiếu thông tin hoặc sai quyền Tutor -> Đá về Login
+          if (!token || !userStr || role !== "TUTOR") {
+              alert("Phiên đăng nhập hết hạn hoặc không hợp lệ. Vui lòng đăng nhập lại.");
+              window.location.href = "login.html";
+              return false;
+          }
+
+          const user = JSON.parse(userStr);
+          CURRENT_TUTOR_ID = user.id;
+          AUTH_TOKEN = token;
+
+          // Hiển thị tên Tutor lên giao diện
+          document.getElementById('displayId').innerText = CURRENT_TUTOR_ID;
+          document.getElementById('displayTutorName').innerText = user.fullName || user.username || "Gia sư";
+          return true;
+      }
+
+      // Hàm đăng xuất
+      function logout() {
+          localStorage.clear();
+          window.location.href = "login.html";
+      }
+
+      // Hàm tạo Header chứa Token (Dùng cho mọi request Fetch)
+      function getAuthHeaders() {
+          return {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${AUTH_TOKEN}`
+          };
+      }
 
       let createModal, pendingModalInstance;
 
       document.addEventListener("DOMContentLoaded", () => {
+        // Kiểm tra Auth trước, nếu OK mới chạy tiếp
+        if (!checkAuth()) return;
+
         createModal = new bootstrap.Modal(document.getElementById("createClassModal"));
         pendingModalInstance = new bootstrap.Modal(document.getElementById("pendingModal"));
         
@@ -158,53 +357,101 @@
       async function loadClasses() {
         const tbody = document.getElementById("classTableBody");
         try {
-          const res = await fetch(`${API_BASE_URL}/classes/tutor/${CURRENT_TUTOR_ID}`);
+          // Thêm headers auth vào request
+          const res = await fetch(`${API_BASE_URL}/classes/tutor/${CURRENT_TUTOR_ID}`, {
+              headers: getAuthHeaders()
+          });
+          
+          // Xử lý nếu Token hết hạn (401/403)
+          if (res.status === 401 || res.status === 403) {
+              logout();
+              return;
+          }
+
           const json = await res.json();
           const loadedClasses = json.data || [];
 
           tbody.innerHTML = "";
           if (!loadedClasses.length) {
-            tbody.innerHTML = '<tr><td colspan="5" class="text-center py-5 text-muted">Bạn chưa tạo lớp nào.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="6" class="text-center py-5 text-muted">Bạn chưa tạo lớp nào. Hãy nhấn nút "Tạo Lớp Mới".</td></tr>';
             return;
           }
 
           loadedClasses.forEach((c) => {
-            let sched = "";
+            let schedHtml = "";
             if(c.schedules && c.schedules.length > 0) {
-                 sched = c.schedules.map(s => 
-                    `<span class="schedule-badge">${s.dayOfWeek} ${formatTime(s.startTime)}-${formatTime(s.endTime)}</span>`
+                 schedHtml = c.schedules.map(s => 
+                    `<div><span class="schedule-badge">${s.dayOfWeek}: ${formatTime(s.startTime)}-${formatTime(s.endTime)}</span></div>`
                 ).join("");
             } else {
-                sched = "<small class='text-muted'>Chưa có lịch</small>";
+                schedHtml = "<small class='text-muted fst-italic'>Chưa cập nhật lịch</small>";
             }
 
-            // LINK ĐẾN FILE DETAIL TẠI ĐÂY
+            const current = c.currentStudents || 0;
+            const max = c.maxStudents || 1;
+            const percent = Math.min((current / max) * 100, 100);
+            
+            let progressClass = "bg-success";
+            let statusBadge = `<span class="text-muted small fw-bold">${current} / ${max} HV</span>`;
+            
+            if (percent >= 100) {
+                progressClass = "bg-danger";
+                statusBadge = `<span class="badge bg-danger">Đã đầy</span>`;
+            } else if (percent >= 70) {
+                progressClass = "bg-warning";
+            }
+
             const row = `
-                <tr class="align-middle" onclick="window.location.href='DetailClass.html?id=${c.id}'" title="Xem chi tiết">
-                    <td class="p-4"><span class="text-muted small">#${c.id}</span></td>
-                    <td class="p-4">
-                        <div class="fw-bold text-dark fs-5">${c.subject}</div>
-                        <div class="mt-1">${sched}</div>
+                <tr onclick="window.location.href='DetailClass.html?id=${c.id}'">
+                    <td class="text-muted fw-bold">#${c.id}</td>
+                    <td>
+                        <div class="d-flex align-items-center">
+                            <div class="subject-icon"><i class="fa-solid fa-book-open"></i></div>
+                            <div>
+                                <div class="fw-bold text-dark">${c.subject}</div>
+                                <div class="small text-muted text-truncate" style="max-width: 200px;">${c.description || "Không có mô tả"}</div>
+                            </div>
+                        </div>
                     </td>
-                    <td class="p-4 price-text">${formatCurrency(c.fee)}</td>
-                    <td class="p-4 text-center">
-                        <span class="badge bg-light text-dark border px-3 py-2 rounded-pill">
-                            ${c.currentStudents} / ${c.maxStudents}
-                        </span>
+                    <td>
+                        <div class="d-flex flex-column gap-1">
+                            ${schedHtml}
+                            <div class="text-location mt-1">
+                                <i class="fa-solid fa-location-dot text-danger"></i> 
+                                ${c.location ? c.location : "Online"}
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="price-text">${formatCurrency(c.fee)}</div>
+                    </td>
+                    <td>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            ${statusBadge}
+                            <small class="text-muted">${Math.round(percent)}%</small>
+                        </div>
+                        <div class="progress progress-thin">
+                            <div class="progress-bar ${progressClass}" role="progressbar" style="width: ${percent}%"></div>
+                        </div>
+                    </td>
+                    <td class="text-center text-muted">
+                        <i class="fa-solid fa-angle-right"></i>
                     </td>
                 </tr>`; 
             tbody.innerHTML += row;
           });
         } catch (err) { 
             console.error(err);
-            tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger">Lỗi kết nối Backend</td></tr>`; 
+            tbody.innerHTML = `<tr><td colspan="6" class="text-center text-danger py-4">Không thể kết nối Backend API</td></tr>`; 
         }
       }
 
       // --- 2. XỬ LÝ YÊU CẦU ---
       async function checkPendingRequests() {
         try {
-            const res = await fetch(`${API_BASE_URL}/bookings/tutor/${CURRENT_TUTOR_ID}`);
+            const res = await fetch(`${API_BASE_URL}/bookings/tutor/${CURRENT_TUTOR_ID}`, {
+                headers: getAuthHeaders() // Thêm token
+            });
             const json = await res.json();
             const pendingList = (json.data || []).filter(b => b.status === "PENDING");
             
@@ -228,7 +475,7 @@
         tbody.innerHTML = "";
 
         if(list.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" class="text-center py-5 text-muted">Không có yêu cầu chờ.</td></tr>';
+            tbody.innerHTML = '<tr><td colspan="4" class="text-center py-5 text-muted">Hiện tại không có yêu cầu nào chờ duyệt.</td></tr>';
             return;
         }
 
@@ -256,13 +503,16 @@
 
       async function approveRequest(bookingId) {
          try {
-             const res = await fetch(`${API_BASE_URL}/bookings/${bookingId}/confirm/tutor/${CURRENT_TUTOR_ID}`, { method: "PUT" });
+             const res = await fetch(`${API_BASE_URL}/bookings/${bookingId}/confirm/tutor/${CURRENT_TUTOR_ID}`, { 
+                 method: "PUT",
+                 headers: getAuthHeaders() // Thêm token
+             });
              const json = await res.json();
 
              if(json.success) {
                  Swal.fire({ icon: 'success', title: 'Đã duyệt!', showConfirmButton: false, timer: 1000 });
-                 openPendingRequestsModal();
-                 loadClasses();
+                 openPendingRequestsModal(); 
+                 loadClasses(); 
              } else {
                  Swal.fire("Lỗi", json.message, "error");
              }
@@ -313,18 +563,18 @@
              const start = r.querySelector(".inp-start").value;
              const end = r.querySelector(".inp-end").value;
              if(day && start && end) {
-                 schedules.push({ dayOfWeek: day, startTime: start, endTime: end, location: loc });
+                 schedules.push({ dayOfWeek: day, startTime: start, endTime: end });
              }
         });
 
         if (!subject || !fee || !max) { 
-            Swal.fire("Thiếu thông tin", "Nhập tên môn, học phí và sĩ số.", "warning"); return; 
+            Swal.fire("Thiếu thông tin", "Vui lòng nhập tên môn, học phí và sĩ số.", "warning"); return; 
         }
         
         try {
             const res = await fetch(`${API_BASE_URL}/classes/tutor/${CURRENT_TUTOR_ID}`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: getAuthHeaders(), // Thêm token
                 body: JSON.stringify({ 
                     subject, description: desc, fee: parseFloat(fee), 
                     maxStudents: parseInt(max), location: loc, schedules 

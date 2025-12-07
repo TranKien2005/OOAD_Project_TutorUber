@@ -81,4 +81,12 @@ public class BookingController {
                 .message("Tutor bookings retrieved successfully")
                 .build());
     }
+    @GetMapping("/class/{classId}")
+    public ResponseEntity<ApiResponse<List<BookingResponse>>> getClassBookings(@PathVariable Long classId) {
+        List<BookingResponse> response = bookingControl.getClassBookings(classId);
+        return ResponseEntity.ok(ApiResponse.<List<BookingResponse>>builder()
+                .data(response)
+                .message("Class bookings retrieved successfully")
+                .build());
+    }
 }
