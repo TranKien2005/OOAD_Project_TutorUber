@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hồ sơ học viên</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="header-row">
+        <div class="title">
+          <span class="icon">🎓</span>
+          <h2>Hồ sơ học viên</h2>
+        </div>
+        <div class="actions">
+          <button class="btn btn-edit" id="editBtn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 20h9" stroke="#ff4d4f" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16.5 3.5L20.5 7.5L8 20H4V16L16.5 3.5Z" stroke="#ff4d4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Chỉnh sửa
+          </button>
+          <button class="btn btn-save" id="saveBtn" disabled>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M5 21h14a2 2 0 0 0 2-2V7.5a2 2 0 0 0-.6-1.4l-2.5-2.5A2 2 0 0 0 16.6 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2Z" stroke="#fff" stroke-width="2"/>
+              <path d="M7 3v6h10V6.5" stroke="#fff" stroke-width="2"/>
+            </svg>
+            Lưu
+          </button>
+          <button class="btn btn-edit" id="changePwdBtn" title="Đổi mật khẩu">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M12 20h9" stroke="#ff4d4f" stroke-width="2" stroke-linecap="round"/>
+              <path d="M16.5 3.5L20.5 7.5L8 20H4V16L16.5 3.5Z" stroke="#ff4d4f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Đổi mật khẩu
+          </button>
+        </div>
+      </div>
+
+      <div class="profile-top">
+        <div class="avatar-wrap">
+          <img id="avatarImg" src="../images/default-avatar.png" alt="avatar">
+        </div>
+        <div class="info-list">
+          <div id="helloText">Xin chào, Học viên!</div>
+          <div id="usernameText" class="muted"></div>
+          <div id="emailText" class="muted"></div>
+          <div id="phoneText" class="muted"></div>
+        </div>
+      </div>
+
+      <div class="form-grid" id="formGrid">
+        <div class="col-span-2">
+          <label>Liên kết ảnh đại diện (avatar)</label>
+          <input class="input" id="avatar" placeholder="https://..." disabled>
+        </div>
+        <div class="col-span-2">
+          <label>Môn học quan tâm (preferenceSubjects)</label>
+          <input class="input" id="preferenceSubjects" placeholder="Ví dụ: Toán, Lý, Hóa" disabled>
+        </div>
+        <div>
+          <label>Ngân sách tối thiểu (budgetMin)</label>
+          <input class="input" id="budgetMin" type="number" min="0" step="10000" placeholder="0" disabled>
+        </div>
+        <div>
+          <label>Ngân sách tối đa (budgetMax)</label>
+          <input class="input" id="budgetMax" type="number" min="0" step="10000" placeholder="0" disabled>
+        </div>
+        <div class="col-span-2">
+          <label>Khu vực (location)</label>
+          <input class="input" id="location" placeholder="Ví dụ: Hà Nội, TP.HCM" disabled>
+        </div>
+        <div class="col-span-2">
+          <label>Giới thiệu (bio)</label>
+          <textarea class="textarea" id="bio" placeholder="Đôi lời giới thiệu..." disabled></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal xác nhận -->
+  <div class="modal-backdrop" id="confirmModal">
+    <div class="modal">
+      <h3>Xác nhận lưu thay đổi</h3>
+      <p>Bạn có chắc muốn cập nhật hồ sơ?</p>
+      <div class="modal-actions">
+        <button class="btn btn-cancel" id="cancelSave">Hủy</button>
+        <button class="btn btn-confirm" id="confirmSave">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Panel đổi mật khẩu -->
+  <div class="modal-backdrop" id="changePwdPanel" style="display:none;">
+    <div class="modal">
+      <h3>Đổi mật khẩu</h3>
+      <div class="form-grid">
+        <div class="col-span-2">
+          <label>Mật khẩu cũ</label>
+          <input class="input" id="oldPassword" type="password" placeholder="Nhập mật khẩu cũ">
+        </div>
+        <div class="col-span-2">
+          <label>Mật khẩu mới</label>
+          <input class="input" id="newPassword" type="password" placeholder="Nhập mật khẩu mới">
+        </div>
+        <div class="col-span-2">
+          <label>Xác nhận mật khẩu mới</label>
+          <input class="input" id="confirmPassword" type="password" placeholder="Nhập lại mật khẩu mới">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-cancel" id="cancelChangePwd">Hủy</button>
+        <button class="btn btn-confirm" id="confirmChangePwd">Lưu thay đổi</button>
+      </div>
+      <div id="changePwdMessage" class="muted" style="margin-top:8px;"></div>
+    </div>
+  </div>
+
+  <script src="../js/studentProfile.js"></script>
+</body>
+</html>
