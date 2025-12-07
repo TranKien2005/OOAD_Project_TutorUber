@@ -130,4 +130,15 @@ public class BookingControl {
                 .orElseThrow(() -> new GeneralException(ResponseCode.BOOKING_NOT_FOUND));
         return bookingMapper.toBookingResponse(booking);
     }
+    public List<BookingResponse> getClassBookings(Long classId) {
+        // Có thể thêm logic kiểm tra classId có tồn tại hay không nếu cần thiết
+        List<Booking> bookings = bookingRepository.findByClassEntityId(classId);
+
+        // Chỉ hiển thị các sinh viên đã được CONFIRMED hoặc PENDING (nếu muốn)
+        List<Booking> confirmedBookings = bookings.stream()
+                .filter(b -> b.getStatus() == Booking.BookingStatus.CONFIRMED || b.getStatus() == Booking.BookingStatus.PENDING)
+                .toList();
+
+        return bookingMapper.toBookingResponseList(confirmedBookings);
+    }
 }
