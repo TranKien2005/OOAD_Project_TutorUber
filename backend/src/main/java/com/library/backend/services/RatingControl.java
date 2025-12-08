@@ -48,9 +48,13 @@ public class RatingControl {
         }
 
         // Check if booking is completed
-        if (booking.getStatus() != Booking.BookingStatus.COMPLETED) {
-            throw new GeneralException(ResponseCode.BOOKING_NOT_COMPLETED);
-        }
+        // if (booking.getStatus() != Booking.BookingStatus.COMPLETED) {
+        //     throw new GeneralException(ResponseCode.BOOKING_NOT_COMPLETED);
+        // }
+        // Cho phép đánh giá nếu là COMPLETED hoặc CONFIRMED
+if (booking.getStatus() != Booking.BookingStatus.COMPLETED && booking.getStatus() != Booking.BookingStatus.CONFIRMED) {
+    throw new GeneralException(ResponseCode.BOOKING_NOT_COMPLETED);
+}
 
         // Check if rating already exists
         if (ratingRepository.existsByBookingId(request.getBookingId())) {
