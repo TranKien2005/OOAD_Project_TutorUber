@@ -6,7 +6,7 @@ function $(id) { return document.getElementById(id); }
 
 function setEditable(enabled) {
   state.editable = enabled;
-  ["avatar","preferenceSubjects","budgetMin","budgetMax","location","bio"].forEach(id => {
+  ["avatar", "preferenceSubjects", "budgetMin", "budgetMax", "location", "bio"].forEach(id => {
     const el = $(id);
     if (!el) return;
     el.disabled = !enabled;
@@ -74,7 +74,7 @@ async function loadProfile() {
 
     const text = await res.text();
     let json = {};
-    try { json = JSON.parse(text); } catch {}
+    try { json = JSON.parse(text); } catch { }
 
     const profile = (res.ok && json?.data) ? json.data : {
       avatar: user.avatar || user.avatarUrl || "",
@@ -132,7 +132,7 @@ async function saveProfile() {
 
     const text = await res.text();
     let json = {};
-    try { json = JSON.parse(text); } catch {}
+    try { json = JSON.parse(text); } catch { }
 
     if (!res.ok) {
       console.warn("Update profile error:", res.status, text);
@@ -203,7 +203,7 @@ async function changePassword() {
     });
     const text = await res.text();
     let json = {};
-    try { json = JSON.parse(text); } catch {}
+    try { json = JSON.parse(text); } catch { }
 
     if (!res.ok) {
       const msg = json?.message || (res.status === 400 ? "Dữ liệu không hợp lệ hoặc mật khẩu cũ sai." : `Đổi mật khẩu thất bại! (${res.status})`);

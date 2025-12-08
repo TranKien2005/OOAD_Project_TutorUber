@@ -28,7 +28,7 @@ async function login() {
     });
 
     let json = {};
-    try { json = await res.json(); } catch {}
+    try { json = await res.json(); } catch { }
 
     if (!res.ok || !json?.success) {
       const text = json?.message || "Đăng nhập thất bại!";

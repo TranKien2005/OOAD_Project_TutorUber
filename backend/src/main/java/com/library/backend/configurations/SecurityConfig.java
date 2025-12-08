@@ -17,15 +17,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         // Bật CORS, tắt CSRF, cho phép preflight và /api/auth/**
         httpSecurity
-            .csrf(csrf -> csrf.disable())
-            .cors(cors -> {}) // dùng cấu hình từ CorsConfig.java
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .requestMatchers("/students/**").permitAll()
-                .requestMatchers("/auth/**").permitAll()
-                .requestMatchers("/api/auth/**").permitAll()
-                .anyRequest().permitAll()
-            );
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> {
+                }) // dùng cấu hình từ CorsConfig.java
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                        .requestMatchers("/students/**").permitAll()
+                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
+                        .anyRequest().permitAll());
 
         return httpSecurity.build();
     }

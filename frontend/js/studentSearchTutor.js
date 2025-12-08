@@ -137,7 +137,7 @@ async function searchTutors() {
     });
 
     let json = {};
-    try { json = await res.json(); } catch {}
+    try { json = await res.json(); } catch { }
 
     if (!res.ok || !json?.success) {
       alert(json?.message || "Tìm kiếm thất bại!");
