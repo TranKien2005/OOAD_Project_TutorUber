@@ -93,7 +93,7 @@ async function placeBooking() {
 
     // Luôn parse JSON (nếu có)
     let json = {};
-    try { json = await res.json(); } catch {}
+    try { json = await res.json(); } catch { }
 
     if (!res.ok) {
       const msg = json?.message || `Đặt lớp thất bại! (${res.status})`;
@@ -126,7 +126,7 @@ async function loadTutorClasses() {
   try {
     const res = await fetch(`${API_BASE}/classes/tutor/${tutorId}`, { method: "GET" });
     let json = {};
-    try { json = await res.json(); } catch {}
+    try { json = await res.json(); } catch { }
 
     if (!res.ok || !json?.success) {
       alert(json?.message || "Không tải được danh sách lớp.");

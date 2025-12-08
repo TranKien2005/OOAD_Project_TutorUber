@@ -17,7 +17,7 @@ function setDisplay(id, value) {
 
 function setEditable(enabled) {
   state.editable = enabled;
-  const ids = ["avatar","specialization","hourlyRate","yearsOfExperience","education","bio"];
+  const ids = ["avatar", "specialization", "hourlyRate", "yearsOfExperience", "education", "bio"];
   for (const id of ids) {
     const el = $(id);
     if (el) el.disabled = !enabled;
@@ -75,12 +75,12 @@ function readForm() {
     return Number.isNaN(n) ? null : n;
   };
   return {
-    avatar: ( $("avatar")?.value || "" ).trim(),
-    specialization: ( $("specialization")?.value || "" ).trim(),
+    avatar: ($("avatar")?.value || "").trim(),
+    specialization: ($("specialization")?.value || "").trim(),
     hourlyRate: toNumberOrNull("hourlyRate"),
     yearsOfExperience: toNumberOrNull("yearsOfExperience"),
-    education: ( $("education")?.value || "" ).trim(),
-    bio: ( $("bio")?.value || "" ).trim()
+    education: ($("education")?.value || "").trim(),
+    bio: ($("bio")?.value || "").trim()
   };
 }
 
@@ -109,7 +109,7 @@ async function loadProfile() {
 
     const text = await res.text();
     let json = {};
-    try { json = JSON.parse(text); } catch {}
+    try { json = JSON.parse(text); } catch { }
 
     const profile = (res.ok && json?.data) ? json.data : {
       avatar: user.avatar || "",
@@ -185,7 +185,7 @@ async function saveProfile() {
 
     const text = await res.text();
     let json = {};
-    try { json = JSON.parse(text); } catch {}
+    try { json = JSON.parse(text); } catch { }
 
     if (!res.ok) {
       console.warn("Update tutor profile error:", res.status, text);
@@ -255,7 +255,7 @@ async function changePassword() {
 
     const text = await res.text();
     let json = {};
-    try { json = JSON.parse(text); } catch {}
+    try { json = JSON.parse(text); } catch { }
 
     if (!res.ok) {
       const msg = json?.message || (res.status === 400 ? "Dữ liệu không hợp lệ hoặc mật khẩu cũ sai." : `Đổi mật khẩu thất bại! (${res.status})`);

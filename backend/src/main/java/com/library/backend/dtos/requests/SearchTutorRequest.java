@@ -11,16 +11,16 @@ import lombok.experimental.FieldDefaults;
 public class SearchTutorRequest {
 
     String subject;
-    
+
     String location;
-    
+
     Double minRate;
-    
+
     Double maxRate;
-    
+
     Double minRating;
-    
+
     String specialization;
-    
+
     String verificationStatus;
 }

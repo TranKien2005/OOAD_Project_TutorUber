@@ -19,22 +19,22 @@ public class UpdateProfileRequest {
     String avatar;
 
     String bio;
-    
+
     // For Student
     String preferenceSubjects;
-    
+
     Double budgetMin;
-    
+
     Double budgetMax;
-    
+
     String location;
-    
+
     // For Tutor
     Double hourlyRate;
-    
+
     String specialization;
-    
+
     String education;
-    
+
     Integer yearsOfExperience;
 }

@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lớp học của Gia sư</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
+  <!-- NAVBAR STUDENT -->
+  <div class="navbar-app">
+    <div class="navbar-inner">
+      <div class="nav-brand">
+        <span class="brand-icon"><i class="fa-solid fa-graduation-cap"></i></span>
+        <span>TutorUber • Học viên</span>
+      </div>
+      <div class="nav-links">
+        <a href="studentSearchTutor.html" class="nav-link" id="nav-search"><i class="fa-solid fa-magnifying-glass"></i>
+          Tìm gia sư & Đặt lớp</a>
+        <a href="HomeStudent.html" class="nav-link" id="nav-home"><i class="fa-solid fa-house"></i> Lịch sử đăng ký</a>
+        <a href="studentProfile.html" class="nav-link" id="nav-profile"><i class="fa-solid fa-user"></i> Thông tin tài
+          khoản</a>
+      </div>
+      <div class="nav-actions">
+        <button class="btn-logout-nav" onclick="localStorage.clear(); location.href='login.html';">
+          <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+        </button>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function markActive() {
+      const map = {
+        "studentSearchTutor.html": "nav-search",
+        "HomeStudent.html": "nav-home",
+        "studentProfile.html": "nav-profile"
+      };
+      const file = location.pathname.split("/").pop();
+      const id = map[file];
+      if (id) document.getElementById(id)?.classList.add("active");
+    })();
+  </script>
   <div class="container">
     <div class="card">
       <div class="header-row">
@@ -37,4 +72,5 @@
 
   <script src="../js/tutorClasses.js"></script>
 </body>
+
 </html>
